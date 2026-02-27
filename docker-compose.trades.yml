@@ -1,0 +1,15 @@
+name: trades-collector
+services:
+  trades-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      network: host
+    container_name: trades-collector-service
+    network_mode: host
+    environment:
+      - PYTHONUNBUFFERED=1
+      - COLLECTOR_TYPE=trades
+    volumes:
+      - ./config.json:/app/config.json:ro
+    restart: unless-stopped

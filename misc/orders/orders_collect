@@ -1,0 +1,21 @@
+/var/log/orders_collect.log {
+    daily
+    rotate 30
+    dateext
+    compress
+    missingok
+    notifempty
+    create 0640 root adm
+    maxage 30
+}
+
+/var/log/orders_collect.error.log {
+    daily
+    rotate 30
+    dateext
+    compress
+    missingok
+    notifempty
+    create 0640 root adm
+    maxage 30
+}

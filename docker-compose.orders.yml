@@ -1,0 +1,15 @@
+name: orders-collector
+services:
+  orders-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      network: host
+    container_name: orders-collector-service
+    network_mode: host
+    environment:
+      - PYTHONUNBUFFERED=1
+      - COLLECTOR_TYPE=orders
+    volumes:
+      - ./config.json:/app/config.json:ro
+    restart: unless-stopped

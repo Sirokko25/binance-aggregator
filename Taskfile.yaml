@@ -1,0 +1,74 @@
+version: '3'
+
+includes:
+  common:
+    taskfile: common/common-tasks.yml
+
+tasks:
+  build-trades:
+    desc: "Build trades collector Docker image"
+    cmds:
+      - docker compose -f docker-compose.trades.yml build
+
+  up-trades:
+    desc: "Start trades collector in background"
+    cmds:
+      - docker compose -f docker-compose.trades.yml up -d
+
+  logs-trades:
+    desc: "View trades collector logs"
+    cmds:
+      - docker compose -f docker-compose.trades.yml logs -f
+
+  down-trades:
+    desc: "Stop and remove trades collector"
+    cmds:
+      - docker compose -f docker-compose.trades.yml down
+
+  restart-trades:
+    desc: "Restart trades collector"
+    cmds:
+      - docker compose -f docker-compose.trades.yml restart
+
+  status-trades:
+    desc: "Show trades collector status"
+    cmds:
+      - docker compose -f docker-compose.trades.yml ps
+
+  build-orders:
+    desc: "Build orders collector Docker image"
+    cmds:
+      - docker compose -f docker-compose.orders.yml build
+
+  up-orders:
+    desc: "Start orders collector in background"
+    cmds:
+      - docker compose -f docker-compose.orders.yml up -d
+
+  logs-orders:
+    desc: "View orders collector logs"
+    cmds:
+      - docker compose -f docker-compose.orders.yml logs -f
+
+  down-orders:
+    desc: "Stop and remove orders collector"
+    cmds:
+      - docker compose -f docker-compose.orders.yml down
+
+  restart-orders:
+    desc: "Restart orders collector"
+    cmds:
+      - docker compose -f docker-compose.orders.yml restart
+
+  status-orders:
+    desc: "Show orders collector status"
+    cmds:
+      - docker compose -f docker-compose.orders.yml ps
+
+  run-trades:
+    desc: "Run trades collector with logging"
+    deps: [up-trades, logs-trades]
+
+  run-orders:
+    desc: "Run orders collector with logging"
+    deps: [up-orders, logs-orders]
